@@ -8,6 +8,8 @@ function Tier() {
   const [result, setResult] = useState({});
   const {tierId} = useParams();
 
+
+  
   useEffect(() => {
     async function fetchData() {      
       const data = await getTierList(tierId);   

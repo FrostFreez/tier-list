@@ -35,7 +35,8 @@ function Home() {
           rel="noopener noreferrer"
         >
           Learn React
-        </a>        
+        </a> 
+        <a href="/contatos">contatos!!!!</a>       
       </header>
       <div>
         <h1>TIER LISTS</h1>
@@ -43,7 +44,7 @@ function Home() {
         <ul>
           {result}
         </ul>
-      </div>
+      </div>      
       
     </div>
   );

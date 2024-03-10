@@ -1,0 +1,65 @@
+{
+  "example": {
+    "name": "minha primeira lista",
+    "numero": 123123213,
+    "verdadeiro": true,
+    "falso": false,
+    "flutuante": 1232.123123,
+    "lista_text": ["asdas", "asdsa"],
+    "lista_numero": [12312,123123,123],
+    "lista_objtos": [
+      {
+        "name": "minha primeira lista",
+        "numero": 123123213,
+        "verdadeiro": true,
+        "falso": false,
+        "flutuante": 1232.123123,
+        "lista_text": ["asdas", "asdsa"],
+        "lista_numero": [12312,123123,123]
+      },
+      {
+        "name": "minha primeira lista",
+        "numero": 123123213,
+        "verdadeiro": true,
+        "falso": false,
+        "flutuante": 1232.123123,
+        "lista_text": ["asdas", "asdsa"],
+        "lista_numero": [12312,123123,123],
+      }
+    ]
+  },
+  "tier": {
+    "name": "minha lista",
+    "author": "well",
+    "items": [
+      {
+          "nome": "",
+          "image": "",
+          "description": ""
+      },
+      {
+        "nome": "",
+        "image": "",
+        "description": ""
+      }
+    ],
+    "tiers" : [
+      {
+        "name": "S",
+        "color": "green",
+        "items": [
+          {
+            "nome": "",
+            "image": "",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "c",
+        "color": "green",
+        "items": []
+      }
+    ]
+  }
+}
