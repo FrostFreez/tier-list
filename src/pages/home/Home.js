@@ -1,7 +1,7 @@
 import './Home.css';
-import logo from './logo.svg';
 import { useEffect, useState } from 'react';
-import { listTiers } from '../../kv/kvConnections';
+import { getTierList, listTiers } from '../../kv/kvConnections';
+import { pointer } from '@testing-library/user-event/dist/cjs/pointer/index.js';
 
 function Home() {
 
@@ -9,43 +9,69 @@ function Home() {
 
   useEffect(() => {
     async function fetchData() {      
-      const tiers = await listTiers();   
-      setTierLists(tiers);          
+      const tiers = await listTiers();
+      setTierLists(tiers);
     }
     fetchData();
   }, []);
 
   const result = tierLists.map(tierKey => 
-    <li key={tierKey}>
-      <a href={`/tiers/${tierKey}`}>{tierKey}</a>{}
-    </li>
+    <div className='tierlists' key={tierKey}>
+      <img className='tierimg' src={getTierList(tierKey).img} alt={tierKey} />
+      <a className='tiernames' href={`/tiers/${tierKey}`}>{tierKey}</a>
+    </div>
   );
 
+  function bring(){
+    var panel = document.getElementById("newTierPanel");
+    panel.classList.add("newTierPanelDown");
+  }
+
+  function lift(){
+    var panel = document.getElementById("newTierPanel");
+    panel.classList.remove("newTierPanelDown");
+  }
+
+  function changeImage(){
+    document.getElementById("tierImage").src = document.getElementsByClassName("panelTop")[1].value;
+    document.getElementById("tierImage").alt = document.getElementsByClassName("panelTop")[0].value;
+  }
   return (
     <div className="home">
-      <header className="home-header">
-        <img src={logo} className="home-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.     
-        </p>
-        <a
-          className="home-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a> 
-        <a href="/contatos">contatos!!!!</a>       
-      </header>
-      <div>
-        <h1>TIER LISTS</h1>
-        <p>Available lists</p>        
-        <ul>
-          {result}
-        </ul>
-      </div>      
-      
+      <div className="header">
+            <a href={"/"}>TIERLISTER</a>
+            <div onClick={bring} className='newTierlist'>+</div>
+        </div>
+        <div className='listOfTierlists'>
+          <h2 className='groupTitle'>Games</h2>
+          <div className='group'>
+            {result}
+          </div>
+        </div>
+        <div className='listOfTierlists'>
+          <h2 className='groupTitle'>Games</h2>
+          <div className='group'>
+            {result}
+          </div>
+        </div>
+        <div className='listOfTierlists'>
+          <h2 className='groupTitle'>Games</h2>
+          <div className='group'>
+            {result}
+          </div>
+        </div>
+        <div className='newTierPanel' id='newTierPanel'>
+            <input id="tierName" class="panelOnTop" type="text"/>
+            <input id="tierURL" class="panelOnTop" type="text" onChange={changeImage}/>
+            <div id="imgContainer">
+                <img alt="yep" id="tierImage"/>
+            </div>
+            <div className="direita test">
+                <textarea id="tierDescription"></textarea>
+                <div className="cancel" id="cancel" onClick={lift}>CANCEL</div>
+                <div className="confirm" id="confirm">CONFIRM</div>
+            </div>
+        </div>
     </div>
   );
 }
