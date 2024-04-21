@@ -18,7 +18,7 @@ function Home() {
   const result = tierLists.map(tierKey => 
     <div className='tierlists' key={tierKey}>
       <img className='tierimg' src={getTierList(tierKey).img} alt={tierKey} />
-      <a className='tiernames' href={`/tiers/${tierKey}`}>{tierKey}</a>
+      <a className='tiernames' href={`/rank/${tierKey}`}>{tierKey}</a>
     </div>
   );
 

@@ -5,7 +5,7 @@ export default function TierList({ranks, setRanks}) {
 
   function handleRemoveRank(removedRank) {
     console.log("removing rank");
-    let newMockRanks = ranks.filter(rank => rank.name != removedRank.name);
+    let newMockRanks = ranks.filter(rank => rank.name !== removedRank.name);
     setRanks(newMockRanks);
   }
 
@@ -41,7 +41,7 @@ export default function TierList({ranks, setRanks}) {
         <div className="rank-items">
           {rank.items.map((image, index) => (
             <div key={index} className="rank-item">
-              <img src={image} alt="Image not found." />
+              <img src={image.memberImage} alt={image.memberName} />
             </div>
           ))}
         </div>
