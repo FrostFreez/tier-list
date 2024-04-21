@@ -14,6 +14,7 @@ function Tier() {
       const data = await getTierList(tierId);
       console.table(data);
       setResult(data);
+      loadTiers();
     }
     fetchData();
   });
@@ -29,9 +30,10 @@ class Tiers{
   }
 }
 let tiers = [];
-for(let x of result.tiers){
-  tiers[tiers.length] = new Tiers(x.name, x.color, x.members);
-};
+
+function loadTiers(){
+    result.tiers.push()
+}
 
 //-------//
 //Members//
@@ -329,22 +331,22 @@ function drop(ev) {
 
   return (
     <div onScroll={grow} onLoad={tierer}>
-        <div class="header">
+        <div className="header">
             <a href={"/"}>TIERLISTER</a>
         </div>
-        <div id="description" class="description">
+        <div id="description" className="description">
             <img id="tierlistImage" src="https://imgur.com/dcJucdc.jpeg" alt="tierlist img"/>
             <h2 id="tierlistName">TIERLIST</h2>
             <p id="tierlistDescription"></p>
         </div>
         <div style={{display: 'flex'}}>
-        <div id={"tierlist"} class="tierlist">
+        <div id={"tierlist"} className="tierlist">
         </div>
-        <div id="rest" class="rest" onDrop={drop} onDragOver = {allowDrop}></div>
+        <div id="rest" className="rest" onDrop={drop} onDragOver = {allowDrop}></div>
         </div>
-        <div id="creation" class="inactiveCreation">
-            <input id="memberName" class="panelTop" type="text"/>
-            <input id="memberURL" class="panelTop" type="text" onChange={changeImage}/>
+        <div id="creation" className="inactiveCreation">
+            <input id="memberName" className="panelTop" type="text"/>
+            <input id="memberURL" className="panelTop" type="text" onChange={changeImage}/>
             <div id="imgContainer">
                 <img alt="yep" id="memberImage"/>
             </div>
