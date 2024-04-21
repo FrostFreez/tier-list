@@ -61,8 +61,8 @@ function Home() {
           </div>
         </div>
         <div className='newTierPanel' id='newTierPanel'>
-            <input id="tierName" class="panelOnTop" type="text"/>
-            <input id="tierURL" class="panelOnTop" type="text" onChange={changeImage}/>
+            <input id="tierName" className="panelOnTop" type="text"/>
+            <input id="tierURL" className="panelOnTop" type="text" onChange={changeImage}/>
             <div id="imgContainer">
                 <img alt="yep" id="tierImage"/>
             </div>

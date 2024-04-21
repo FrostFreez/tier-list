@@ -1,0 +1,102 @@
+.ranks {
+  background-color: rgb(82, 82, 82);
+  color: white;
+  margin: 0px;
+  padding: 10px;
+}
+
+.ranks .ranks-list {
+  display: flex;
+  flex-direction: column;  
+}
+
+.ranks .ranks-list .rank{  
+  margin: 1px;
+  min-height: 100px;
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: row;  
+}
+
+.ranks .ranks-list .rank-title{
+  margin: 1px 1px;
+  background-color: rgb(101, 101, 101);
+  display: flex;
+  min-height: 100px;
+  min-width: 100px;
+  width: 100px;
+  align-items: center;
+  justify-content: center;
+}
+
+.ranks .ranks-list .rank-items{
+  margin: 1px 0px;
+  background-color: rgb(101, 101, 101);
+  width: 100%;
+  min-height: 100px;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.rank-items .rank-item {
+  margin: 2px;
+  display: flex;
+  flex-direction: row;
+  height: 100px;
+  width: auto;
+}
+
+.rank-item img {
+  height: 100%;  
+  height: 100%;
+  margin: 1px;
+}
+
+
+.ranks .ranks-list .actions{
+  margin: 1px 1px;
+  font-weight: bold;
+  display: flex;
+  height: auto;
+  width: 30px;
+  text-align: center;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  flex-direction: column;
+}
+
+.ranks .ranks-list .actions>div {
+  background-color: rgb(101, 101, 101);
+  height: 32.5%;
+  width: 100%;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.ranks .ranks-list .action{
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.ranks .ranks-list .action:hover{
+  background-color: white;
+  color: black;
+}
+
+.ranks .ranks-list .remove-action{  
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.ranks .ranks-list .remove-action:hover{
+  background-color: red;
+}

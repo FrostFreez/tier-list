@@ -1,0 +1,18 @@
+.rank-form {
+  display: flex;
+  margin: 10px;  
+  padding: 10px;
+  background-color: rgb(112, 112, 112);
+  flex-flow: nowrap;
+  justify-content: space-around;
+  color: white;
+}
+
+.rank-form .inputs {
+  width: 100%;
+  flex-grow: 1;
+}
+
+.rank-form .input-color {
+  padding: 0px;
+}
