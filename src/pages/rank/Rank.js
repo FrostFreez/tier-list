@@ -1,18 +1,21 @@
 import "./Rank.css";
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getTierList } from '../../kv/kvConnections';
+import { createTierList2, updateTierList2, getTierList2 } from '../../kv/kvConnections';
+import { useNavigate } from 'react-router-dom';
 import TierList from "../../components/tierList/TierList";
 import TierForm from '../../components/tierForm/TierlistForm';
 import ImageForm from '../../components/imageForm/ImageForm';
 import RankForm from '../../components/rankForm/RankForm';
-import Rest from '../../components/rest/Rest';
 
 export default function Rank() {
   
   // eslint-disable-next-line
-  const [result, setResult] = useState({});
+  const navigate = useNavigate();  
   const {tierId} = useParams();
+  const [name, setName] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [description, setDescription] = useState("");
   const [images, setImages] = useState([]);
   const [ranks, setRanks] = useState([
     {
@@ -30,12 +33,62 @@ export default function Rank() {
     {name: 'D', color: '#7fffff', items: ["https://plus.unsplash.com/premium_photo-1675662135639-89ac3d8ee8fa?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHVybHxlbnwwfHwwfHx8MA%3D%3D"]}
   ]);
   
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const data = await getTierList2(tierId);
+        console.table(data);
+        setName(data.name);
+        setDescription(data.description);
+        setImages(data.images)
+        setRanks(data.ranks)
+        setIsLoading(false);
+      }catch(error) {
+        alert(error);
+        setIsLoading(false);
+      }
+    }
+    if(tierId) {
+      console.log('loading tier');
+      setIsLoading(true);
+      fetchData();      
+    }else {
+      console.log('Creating tier');
+      setIsLoading(false)
+    }        
+  }, [tierId]);
+  
+  async function handleOnSave() {
+    const tierList = {
+      name,
+      description,
+      ranks,
+      images
+    };
+    if (tierId == name) {
+      try {
+        await updateTierList2(tierId, tierList);
+        alert("Saved");
+      } catch (err) {
+        alert(err)
+      }
+    } else {
+      try {
+        await createTierList2(name, tierList);
+        alert("Created");
+        navigate("/rank/" + name);
+      } catch (err) {
+        console.log('asdasdasdasd')
+        alert(err)
+      }      
+    }
+  }
   
   function handleAddRank(rank) {
     console.log("rank added")
     setRanks([...ranks, rank]);
   }
-
+  
   function handleAddImage(image) {
     console.log("image added", image)
     images.push(image);
@@ -43,28 +96,37 @@ export default function Rank() {
     setImages([...images]);
   }
   
-  useEffect(() => {
-    async function fetchData() {
-      const data = await getTierList(tierId);
-      console.table(data);
-      setResult(data);
-    }
-    fetchData();
-  });
-
   return (    
-    <div className="rank-page">      
-      <TierForm/>
-      <div>
+    <div className="rank-page">  
+    {
+      isLoading ? (<div>LOADING</div>) :
+      (
         <div>
-          <RankForm addRank={(rank) => handleAddRank(rank)}/>
+          <TierForm 
+            name={name}
+            setName={name => setName(name)}        
+            description={description}
+            setDescription={description => setDescription(description)} 
+            onSave={() => handleOnSave()}
+          />
+          <div>
+            <div>
+              <RankForm addRank={(rank) => handleAddRank(rank)}/>
+            </div>
+            <div>
+              <ImageForm addImage={(image) => handleAddImage(image)}/>
+            </div>        
+          </div>
+          <TierList 
+            ranks={ranks} 
+            setRanks={setRanks}
+            images={images}
+            setImages={setImages}
+          />      
         </div>
-        <div>
-          <ImageForm addImage={(image) => handleAddImage(image)}/>
-        </div>        
-      </div>
-      <TierList ranks={ranks} setRanks={setRanks}/>
-      <Rest rests={images}/>
-    </div>
+      )      
+    }  
+    </div>  
+    
   );
 }

@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './InlineEdit.css'
 
 function InlineEdit({value, setValue, required, placeholder, children}) {
   
-  const [isEditing, setEditing] = useState(true);
-  const [text, setText] = useState(value);
+  const [isEditing, setEditing] = useState(true);  
+
+  useEffect(() => {
+    value ? setEditing(false) : setEditing(true);   
+  }, []);
 
   const handleTextClick = () => {
     setEditing(true);
