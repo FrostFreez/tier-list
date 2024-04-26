@@ -13,8 +13,9 @@ ReactDOM.render(
     <Router>
     <Routes>
       <Route path="/" element={<Home/>}></Route>
-      <Route exact path="/tiers/:tierId" element={<Tier/>} />       
-      <Route exact path="/rank/:tierID" element={<Rank/>} />       
+      <Route exact path="/tiers/:tierId" element={<Tier/>} />
+      <Route exact path="/rank/" element={<Rank/>} />              
+      <Route exact path="/rank/:tierId" element={<Rank/>} />       
     </Routes>
     </Router>
   </React.StrictMode>,

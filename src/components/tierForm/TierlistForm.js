@@ -1,37 +1,14 @@
 import React from 'react';
-import { useState} from 'react';
 import Button from '../button/Button';
-import RankForm from '../rankForm/RankForm';
 import InlineEdit from '../inlineEdit/InlineEdit';
 import "./TierListForm.css";
 // import { useTask } from '../../contexts/taskContext';
 
-export default function TierListForm() {
-
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [imageUrl, setImageUrl] = useState("");  
-  const [rank, setRank] = useState();
-
-  // const { addTask, tasks }  = useTask();
+export default function TierListForm({name, setName, description, setDescription, onSave}) {
 
   function handleAddList(event) {
-    event.preventDefault(); 
-    console.log("calling add list")
-    // addTask({
-    //   name,
-    //   time,
-    //   selected: false,
-    //   completed: false,
-    //   id: uuidv4()
-    // })    
-    // resetState();
-  }
-
-  function resetState() {
-    setName("");
-    setDescription("");
-    setImageUrl("");
+    event.preventDefault();     
+    onSave();
   }
 
   return (
@@ -64,6 +41,6 @@ export default function TierListForm() {
         </div>
       </form>
     </div>
-    
+
   )
 }
