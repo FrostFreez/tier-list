@@ -1,3 +1,4 @@
+/*
 :root {
   --bc: antiquewhite;
 }
@@ -211,6 +212,7 @@ img{
 .test{
   display: flex;
   flex-wrap: wrap;
-  width: calc(70'vw' - 54'vh');
+  width: 70vw - 54vh;
   height: fit-content;
 }
+*/

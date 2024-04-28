@@ -1,7 +1,7 @@
 import "./Rank.css";
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { createTierList2, updateTierList2, getTierList2 } from '../../kv/kvConnections';
+import { createTierList, updateTierList, getTierList } from '../../kv/kvConnections';
 import { useNavigate } from 'react-router-dom';
 import TierList from "../../components/tierList/TierList";
 import TierForm from '../../components/tierForm/TierlistForm';
@@ -40,10 +40,9 @@ export default function Rank() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const data = await getTierList2(tierId);
+        const data = await getTierList(tierId);
         console.table(data);
         setName(data.name);
-        setDescription(data.description);
         setImages(data.images)
         setRanks(data.ranks)
         setIsLoading(false);
@@ -65,24 +64,24 @@ export default function Rank() {
   async function handleOnSave() {
     const tierList = {
       name,
-      description,
+      image: "https://cdn.thespike.gg/Eddie%2FBreeze%20callouts_1687435342902.jpg",
+      topics: ["VIDEOGAME", "CHARACTER"],
       ranks,
       images
     };
     if (tierId == name) {
       try {
-        await updateTierList2(tierId, tierList);
+        await updateTierList(tierId, tierList);
         alert("Saved");
       } catch (err) {
         alert(err)
       }
     } else {
       try {
-        await createTierList2(name, tierList);
+        await createTierList(name, tierList);
         alert("Created");
         navigate("/rank/" + name);
       } catch (err) {
-        console.log('asdasdasdasd')
         alert(err)
       }      
     }
@@ -108,7 +107,7 @@ export default function Rank() {
         <div>
           <TierForm 
             name={name}
-            setName={name => setName(name)}        
+            setName={name => setName(name)}
             description={description}
             setDescription={description => setDescription(description)} 
             onSave={() => handleOnSave()}

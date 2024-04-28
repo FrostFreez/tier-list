@@ -25,7 +25,7 @@ margin: 0 5%;
 .header{
   background-color: var(--bc);
   height: 15vh;
-  width: 100%;
+  width: 100vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -73,8 +73,12 @@ margin: 0 5%;
   overflow: hidden;
 }
 .tiernames{
-  font-size: 3rem;
+  font-size: 2rem;
   margin: auto;
+  text-align: center;
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
 }
 .tierimg{
   width: 13vh;
@@ -118,13 +122,37 @@ margin: 0 5%;
   #tierImage{
   border-radius: 10%;
   }
-  #tierDescription{
+  #topics{
+  display: flex;
+  flex-wrap: wrap;
   width: 100%;
   height: 42vh;
   margin: 2vh 2vw;
   justify-self: end;
+  background-color: rgb(120, 120, 120, 0.7);
+  padding: 2.5%;
+  }
+  .topic{
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    height: 3vw;
+    background-color: white;
+    box-shadow: -1px -2px 3px white;
+    color: black;
+    font-size: 1.5vw;
+    font-weight: bold;
+    padding: 0.5vw 1vw;
+    margin: auto;
+  }
+  .clicked{
+    background-color: black;
+    box-shadow: 1px 2px 3px black;
+    color: white;
+    border-radius: 15vh;
   }
   .cancel, .confirm{
+    display: flex;
   background-color: white;
   width: 41%;
   height: 8vh;
@@ -134,9 +162,14 @@ margin: 0 5%;
   font-size: 3rem;
   justify-content: center;
   align-items: center;
-  text-align: center;
   text-justify: center;
   }
-  .cancel:hover, .confirm:hover, .newTierlist:hover{
+  .test{
+    display: flex;
+    flex-wrap: wrap;
+    width: calc(85vw - 54vh);
+    height: fit-content;
+  }
+  .cancel:hover, .confirm:hover, .newTierlist:hover, .topic:hover{
     cursor: pointer;
     }
