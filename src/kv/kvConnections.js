@@ -41,7 +41,7 @@ export async function existsTierListByKey(tierKey) {
       },
     });
     const data = await response.json();
-    return JSON.parse(data.result);
+    return data.result;
   } catch (error) {
     console.log('Error attempting check tier list. ERROR: ', error);    
   }
@@ -50,7 +50,7 @@ export async function existsTierListByKey(tierKey) {
 //CRIAR UMA NOVA TIER LIST 
 export async function createTierList(tierKey, tierList) {  
   try {
-    if (existsTierListByKey(tierKey)) {
+    if (await existsTierListByKey(tierKey)) {
       throw new Error(`Already exits a tier list with the key: ${tierKey}`)
     }
     const response = await fetch(`${KV_API}/set/rank:${tierKey}`, {
@@ -61,9 +61,10 @@ export async function createTierList(tierKey, tierList) {
       method: 'POST',
     });
     const data = await response.json();
-    return JSON.parse(data.result);
+    return data.result;
   } catch (error) {
     console.log('Error attempting create a tier list. ERROR: ', error);    
+    throw(error);
   }
 }
 

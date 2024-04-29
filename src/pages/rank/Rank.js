@@ -42,9 +42,9 @@ export default function Rank() {
       try {
         const data = await getTierList(tierId);
         console.table(data);
-        setName(data.name);
-        setImages(data.images)
-        setRanks(data.ranks)
+        setName(data.name || '');
+        setImages(data.images || [])
+        setRanks(data.ranks || [])
         setIsLoading(false);
       }catch(error) {
         alert(error);
