@@ -1,0 +1,40 @@
+.rest {
+  background-color: #525252;
+  width:  100%;
+  min-height: 100px;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  margin: 30px 0px;
+  align-items: center;
+}
+
+.rest-images {
+  background-color: rgb(101, 101, 101);
+  display: flex;
+  flex-direction: row;  
+  align-items: center;
+  width: 95%;
+  height: auto;
+  min-height: 100px;
+}
+
+.rest-images img{  
+  max-height: 100px;
+  max-width: 100px;
+  background-color: #525252;
+  margin: 5px;
+}
+
+.rest-waste {  
+  background-color: red;
+  width: 5%;
+  min-height: 100px;
+  height: 100%;
+  cursor: pointer;
+  justify-content: space-around;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-left: 4px solid #525252;
+}

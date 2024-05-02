@@ -1,11 +1,11 @@
-const KV_TOKEN = "Aa8RASQgZWQ5NzU4MDUtYjgyYi00MGY0LWE5NTgtNDc3OTUyMzBiNzcyZDg5OGYyMWYyZDY4NGY2MmFkYzYzMmZiN2ZiYmE5MDY=";
-const KV_API = "https://legible-mantis-44817.upstash.io";
+const KV_TOKEN = "AbUMASQgNjgzMmQxNGEtZWFjYS00NWU3LWFiMDYtNzgwYzkxYjVmYjZhNzgwZjliYzIxYjg2NDE0ZmFjZjY0YjdkMjc1NzZhNTg=";
+const KV_API = "https://fine-javelin-46348.upstash.io";
 
 //LISTAR TODAS AS TIERLISTS
 //['list:1', 'list:2']
 export async function listTiers() {  
   try {
-    const response = await fetch(`${KV_API}/keys/tier:*`, {
+    const response = await fetch(`${KV_API}/keys/rank:*`, {
       headers: {
         Authorization: `Bearer ${KV_TOKEN}`,
       },
@@ -17,10 +17,25 @@ export async function listTiers() {
   }
 }
 
+//LISTAR TODOS OS CONTEUDOS DE TODAS AS LISTAS
+//['list:1', 'list:2']
+export async function listTiersContent(tierNames) {  
+  if(!tierNames) {
+    return [];
+  }
+  try {
+    return await Promise.all(tierNames.map(async (tierName) => {
+      return await getTierList(tierName);
+    }))    
+  } catch (error) {
+    console.log('Error attempting list tier list. ERROR: ', error);    
+  }
+}
+
 //PEGAR UMA TIERLIST BASEADO NA CHAVE
 export async function getTierList(tierKey) {  
   try {
-    const response = await fetch(`${KV_API}/get/tier:${tierKey}`, {
+    const response = await fetch(`${KV_API}/get/rank:${tierKey}`, {
       headers: {
         Authorization: `Bearer ${KV_TOKEN}`,
       },
@@ -35,13 +50,13 @@ export async function getTierList(tierKey) {
 //VERIFICA SE EXISTE UMA TIER LIST BASEADO NA CHAVE
 export async function existsTierListByKey(tierKey) {  
   try {
-    const response = await fetch(`${KV_API}/exists/tier:${tierKey}`, {
+    const response = await fetch(`${KV_API}/exists/rank:${tierKey}`, {
       headers: {
         Authorization: `Bearer ${KV_TOKEN}`,
       },
     });
     const data = await response.json();
-    return JSON.parse(data.result);
+    return data.result;;
   } catch (error) {
     console.log('Error attempting check tier list. ERROR: ', error);    
   }
@@ -50,10 +65,10 @@ export async function existsTierListByKey(tierKey) {
 //CRIAR UMA NOVA TIER LIST 
 export async function createTierList(tierKey, tierList) {  
   try {
-    if (existsTierListByKey(tierKey)) {
+    if (await existsTierListByKey(tierKey)) {
       throw new Error(`Already exits a tier list with the key: ${tierKey}`)
     }
-    const response = await fetch(`${KV_API}/set/tier:${tierKey}`, {
+    const response = await fetch(`${KV_API}/set/rank:${tierKey}`, {
       headers: {
         Authorization: `Bearer ${KV_TOKEN}`,
       },
@@ -61,16 +76,17 @@ export async function createTierList(tierKey, tierList) {
       method: 'POST',
     });
     const data = await response.json();
-    return JSON.parse(data.result);
+    return data.result;
   } catch (error) {
-    console.log('Error attempting create a tier list. ERROR: ', error);    
+    console.log('Error attempting create a tier list. ERROR: ', error);
+    throw(error);
   }
 }
 
 //ATUALIZAR UMA TIER LIST 
 export async function updateTierList(tierKey, tierList) {  
   try {
-    const response = await fetch(`${KV_API}/set/tier:${tierKey}`, {
+    const response = await fetch(`${KV_API}/set/rank:${tierKey}`, {
       headers: {
         Authorization: `Bearer ${KV_TOKEN}`,
       },
