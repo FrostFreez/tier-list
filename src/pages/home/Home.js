@@ -11,6 +11,15 @@ function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    async function fetchData() {
+      const tiers = await listTiers();
+      setTierLists(tiers);
+      setIsLoading(false);
+    }
+    fetchData();
+  }, []);
+
   const topics = ["MOVIE", "VIDEOGAME", "ANIME/MANGA", "IDEAL", "FOOD", "CHARACTER", "CELEBRITY",
     "VEHICLE", "MUSIC", "OBJECT", "INSTITUTION", "COUNTRY", "ANIMAL", "BRAND", "SPORTS", "BOOK",
     "BOARDGAME", "UNIVERSE", "SCHOOL", "PROGRAMS"];
@@ -78,7 +87,7 @@ function Home() {
           if (tier.topics.includes(topic)) {
             return (
               <div className={`tierlists ${tier.topics}`} key={tier.name}>
-                <img className="tierimg"  src={tier.image} alt={tier.name} />
+                <img className="tierimg" src={tier.image} alt={tier.name} />
                 <a className='tiernames' href={`/rank/${tier.name}`}>{tier.name}</a>
               </div>
             )
@@ -94,7 +103,7 @@ function Home() {
       function generateDiv(result, topic) {
         const divList = [];
         for (let x of result) {
-          divList.push(<div id={'listOfList:' + topic + divList.length}></div>)
+          divList.push(<div id={'listOfList:' + topic + result.indexOf(x)}></div>)
         }
         return divList;
       }
@@ -117,13 +126,12 @@ function Home() {
     const x = await listingLists(tiers);
     x.map(thing => { number++; ReactDOM.render(thing, document.getElementById(`listOfLists:${number}`)) })
     const toTier = await changeResult(tiers);
+    number = -1;
     toTier.map(that => that.map(sheesh => sheesh.then(thing => topics.map(topic => {
-      number = -1;
       if (thing !== undefined) {
         if (thing.props.className.includes(topic)) {
           number++;
-          console.log('listOfList:' + topic + number);
-          ReactDOM.render(thing, document.getElementById('listOfList:' + topic + number));
+          ReactDOM.render(thing, document.getElementById('listOfList:' + topic + that.indexOf(sheesh)));
         }
       }
     }))))
@@ -137,15 +145,27 @@ function Home() {
     return divList;
   }
 
-  useEffect(() => {
-    async function fetchData() {
-      const tiers = await listTiers();
-      setTierLists(tiers);
-      setIsLoading(false);
-      asyncCall();
+  async function lastThing() {
+    for (let x of document.getElementById("loaded").children) {
+      for (let y of x.children[0].children[1].children) {
+        if(typeof(y.children[0]) === "undefined"){
+          x.children[0].children[1].removeChild(y);
+          console.log(typeof(y.children[0]) === "undefined")
+        }
+      }
     }
-    fetchData();
-  }, []);
+  }
+
+  async function myFunc() {
+    if (document.getElementById('loaded')) {
+      await asyncCall();
+      //await lastThing();
+    } else {
+      setTimeout(myFunc, 15);
+    }
+  }
+
+  myFunc();
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -158,7 +178,7 @@ function Home() {
       {
         isLoading ? (<div>LOADING</div>) :
           (<div>
-            {generate19div()}
+            <div id="loaded">{generate19div()}</div>
             <div className='newTierPanel' id='newTierPanel'>
               <input id="tierName" className="panelOnTop" type="text" />
               <input id="tierURL" className="panelOnTop" type="text" onChange={changeImage} />
