@@ -86,8 +86,8 @@ function Home() {
             <div className='group'>
               {tierListsContent
                 .filter(content => content.topics.includes(topic))
-                .map((content, index) => (
-                  <div key={index} className={`tierlists`} key={content.name}>
+                .map((content) => (
+                  <div className={`tierlists`} key={content.name}>
                     <img className="tierimg" src={content.image} alt={content.name} />
                     <a className='tiernames' href={`/rank/${content.name}`}>{content.name}</a>
                   </div>
