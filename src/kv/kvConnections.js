@@ -17,6 +17,21 @@ export async function listTiers() {
   }
 }
 
+//LISTAR TODOS OS CONTEUDOS DE TODAS AS LISTAS
+//['list:1', 'list:2']
+export async function listTiersContent(tierNames) {  
+  if(!tierNames) {
+    return [];
+  }
+  try {
+    return await Promise.all(tierNames.map(async (tierName) => {
+      return await getTierList(tierName);
+    }))    
+  } catch (error) {
+    console.log('Error attempting list tier list. ERROR: ', error);    
+  }
+}
+
 //PEGAR UMA TIERLIST BASEADO NA CHAVE
 export async function getTierList(tierKey) {  
   try {

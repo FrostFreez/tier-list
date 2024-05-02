@@ -1,20 +1,22 @@
 import './Home.css';
 import { useEffect, useState } from 'react';
-import { getTierList, listTiers, createTierList } from '../../kv/kvConnections';
+import { listTiers, createTierList, listTiersContent } from '../../kv/kvConnections';
 import { useNavigate } from 'react-router-dom';
-import * as ReactDOM from "react-dom";
 import * as React from "react";
 
 function Home() {
 
   const [tierLists, setTierLists] = useState([]);
+  const [tierListsContent, setTierListsContent] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
       const tiers = await listTiers();
+      const tiersContents = await listTiersContent(tiers);
       setTierLists(tiers);
+      setTierListsContent(tiersContents)
       setIsLoading(false);
     }
     fetchData();
@@ -75,99 +77,28 @@ function Home() {
     }
   }
 
-  //////////////////////////////////////////////////////////////////////
-  function changeData() {
-    return tierLists.map(tierKey => { return getTierList(tierKey) })
-  };
-
-  async function changeResult(tiers) {
-    return topics.map(topic => {
-      const result2 = tiers.map(thing => {
-        return thing.then(tier => {
-          if (tier.topics.includes(topic)) {
-            return (
-              <div className={`tierlists ${tier.topics}`} key={tier.name}>
-                <img className="tierimg" src={tier.image} alt={tier.name} />
-                <a className='tiernames' href={`/rank/${tier.name}`}>{tier.name}</a>
-              </div>
-            )
-          }
-        })
-      })
-      return result2;
-    })
-  };
-
-  async function listingLists(tiers) {
-    return topics.map(topic => {
-      function generateDiv(result, topic) {
-        const divList = [];
-        for (let x of result) {
-          divList.push(<div id={'listOfList:' + topic + result.indexOf(x)}></div>)
-        }
-        return divList;
-      }
-
-      const pushing = (
-        <div className='listOfTierlists'>
-          <h2 className='groupTitle'>{topic}</h2>
-          <div className='group'>
-            {generateDiv(tiers, topic)}
+  function generate19div() {    
+    return topics.map((topic, index) => {
+      return (
+        <div key={index} id={'topic-' + topic}>
+          <div className='listOfTierlists'>
+            <h2 className='groupTitle'>{topic}</h2>
+            <div className='group'>
+              {tierListsContent
+                .filter(content => content.topics.includes(topic))
+                .map((content, index) => (
+                  <div key={index} className={`tierlists`} key={content.name}>
+                    <img className="tierimg" src={content.image} alt={content.name} />
+                    <a className='tiernames' href={`/rank/${content.name}`}>{content.name}</a>
+                  </div>
+                ))
+              }
+            </div>
           </div>
         </div>
-      );
-      return pushing;
+      )
     })
   }
-
-  async function asyncCall() {
-    const tiers = changeData();
-    let number = -1;
-    const x = await listingLists(tiers);
-    x.map(thing => { number++; ReactDOM.render(thing, document.getElementById(`listOfLists:${number}`)) })
-    const toTier = await changeResult(tiers);
-    number = -1;
-    toTier.map(that => that.map(sheesh => sheesh.then(thing => topics.map(topic => {
-      if (thing !== undefined) {
-        if (thing.props.className.includes(topic)) {
-          number++;
-          ReactDOM.render(thing, document.getElementById('listOfList:' + topic + that.indexOf(sheesh)));
-        }
-      }
-    }))))
-  };
-
-  function generate19div() {
-    const divList = [];
-    for (let i = 0; i <= 19; i++) {
-      divList.push(<div id={'listOfLists:' + i}></div>)
-    }
-    return divList;
-  }
-
-  async function lastThing() {
-    for (let x of document.getElementById("loaded").children) {
-      for (let y of x.children[0].children[1].children) {
-        if(typeof(y.children[0]) === "undefined"){
-          x.children[0].children[1].removeChild(y);
-          console.log(typeof(y.children[0]) === "undefined")
-        }
-      }
-    }
-  }
-
-  async function myFunc() {
-    if (document.getElementById('loaded')) {
-      await asyncCall();
-      //await lastThing();
-    } else {
-      setTimeout(myFunc, 15);
-    }
-  }
-
-  myFunc();
-
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   return (
     <div className="home">

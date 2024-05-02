@@ -37,7 +37,7 @@ export default function ImageForm({addImage}) {
             placeholder="Paste image Url"
             required
           />
-          {(imageUrl, imageName) ?
+          {(imageUrl) ?
             (<img id="image" alt={imageName} className="image-preview" src={imageUrl}/>) :
             (<p>set image</p>)
           }

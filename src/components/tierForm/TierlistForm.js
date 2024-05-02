@@ -4,7 +4,7 @@ import InlineEdit from '../inlineEdit/InlineEdit';
 import "./TierListForm.css";
 // import { useTask } from '../../contexts/taskContext';
 
-export default function TierListForm({name, setName, description, setDescription, onSave}) {
+export default function TierListForm({name, setName, onSave}) {
 
   function handleAddList(event) {
     event.preventDefault();     
@@ -22,15 +22,6 @@ export default function TierListForm({name, setName, description, setDescription
               setValue={(newValue) => setName(newValue)} 
               required={true}>
                 <h2>{name}</h2>
-            </InlineEdit>
-          </div>
-          <div className="">          
-            <InlineEdit 
-              placeholder="Tier list description" 
-              value={description} 
-              setValue={(newValue) => setDescription(newValue)} 
-              required={true}>
-              <h3>{description}</h3>
             </InlineEdit>
           </div>
         </div>

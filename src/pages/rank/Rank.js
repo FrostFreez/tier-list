@@ -15,7 +15,6 @@ export default function Rank() {
   const {tierId} = useParams();
   const [name, setName] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  const [description, setDescription] = useState("");
   const [images, setImages] = useState([]);
   const [ranks, setRanks] = useState([
     {
@@ -108,8 +107,6 @@ export default function Rank() {
           <TierForm 
             name={name}
             setName={name => setName(name)}
-            description={description}
-            setDescription={description => setDescription(description)} 
             onSave={() => handleOnSave()}
           />
           <div>

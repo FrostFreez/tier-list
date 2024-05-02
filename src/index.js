@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import './index.css';
 import Home from './pages/home/Home';
 import Tier from './pages/tier/Tier';
@@ -8,7 +8,9 @@ import reportWebVitals from './reportWebVitals';
 import { sendToVercelAnalytics } from './vitals';
 import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
 
-ReactDOM.render(
+const root = createRoot(document.getElementById('root'));
+
+root.render(
   <React.StrictMode>
     <Router>
     <Routes>
@@ -18,8 +20,6 @@ ReactDOM.render(
       <Route exact path="/rank/:tierId" element={<Rank/>} />       
     </Routes>
     </Router>
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+  </React.StrictMode>);
 
 reportWebVitals(sendToVercelAnalytics);
