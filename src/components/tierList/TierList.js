@@ -105,7 +105,6 @@ export default function TierList({ranks, setRanks, images, setImages}) {
 
   return (
     <div className="ranks">
-      <h3>Ranks</h3>
       <div className="ranks-list">
         {ranks.map((rank, index) => renderItem(rank, index))}
       </div>

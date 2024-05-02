@@ -1,28 +1,25 @@
 .form {
-  display:flex;
-  flex-direction: row; 
-  justify-content: space-between; 
-}
-
-.form h1{ 
-  margin: 0px;
+  display: flex;
+  margin: 10px;  
+  padding: 20px;
+  background-color: rgb(112, 112, 112);
+  flex-flow: nowrap;
+  justify-content: space-between;
   color: white;
+  align-items: center;
 }
 
 .form h2{ 
   margin: 0px;
   color: white;
-}
-
-.form h3{ 
-  margin: 0px;
-  color: white;
+  font-size: 3rem;
 }
 
 .form .inputs{
   display:flex;
   flex-direction: column;
-  width: 50%;    
+  width: 50%;
+  font-size: 1.5rem;
 }
 
 .form .actions{
@@ -54,6 +51,7 @@ input {
   border: unset;  
   background-color: #ffffff;
   box-shadow: 0px 1px 2px #2D2B2B9F inset;
+  font-size: 1rem;
 }
       
 ::placeholder {

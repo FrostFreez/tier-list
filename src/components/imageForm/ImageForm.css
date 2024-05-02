@@ -1,5 +1,7 @@
 .image-form {
   display: flex;
+  width: calc(50vw - 45px);
+  height: 100px;
   margin: 10px;  
   padding: 10px;
   background-color: rgb(112, 112, 112);
@@ -8,17 +10,55 @@
   color: white;
 }
 
-.image-form .inputs {
+.image-form .inputes {
   width: 100%;
-  flex-grow: 1;
+  height: 80px;
+  flex-wrap: wrap;
+}
+
+.image-form .inputes *{
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: auto 5px;
+  text-wrap: nowrap;
+}
+
+.image-form .inputes * input{
+  height: 40px;
+  width: 100%;
+  border: 3px solid rgb(112, 112, 112);
 }
 
 .image-form .image-preview {
   max-width: 100px;
   max-height: 100px;
 }
-.leftSide{
-  height: 100%;
+
+#image-preview{
+  height: 80px;
+  width: 80px;
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
+}
+
+#image-preview *{
+  position: relative;
+  top: -1vh;
+  font-size: 2rem;
+  display: flex;
+  text-wrap: wrap;
+  text-align: center;
+  text-justify: center;
+}
+
+.image-form button{
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto 5px;
 }

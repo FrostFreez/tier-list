@@ -15,7 +15,7 @@ export default function RankForm({addRank}) {
 
   return (
     <div action="" className="rank-form">        
-      <div className="inputs">
+      <div className="inputes">
         <div>
           <label htmlFor="task">Name: </label>
           <input 
@@ -28,7 +28,7 @@ export default function RankForm({addRank}) {
           />
         </div>
         <div>
-          <label htmlFor="color">Color: </label>
+          <label id='colorL' htmlFor="color">Color: </label>
           <input 
             className="input-color"
             value={color}

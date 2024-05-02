@@ -1,5 +1,7 @@
 .rank-form {
   display: flex;
+  width: calc(50vw - 45px);
+  height: 100px;
   margin: 10px;  
   padding: 10px;
   background-color: rgb(112, 112, 112);
@@ -8,11 +10,38 @@
   color: white;
 }
 
-.rank-form .inputs {
+.rank-form .inputes {
   width: 100%;
-  flex-grow: 1;
+  height: 80px;
+  flex-wrap: wrap;
+}
+
+.rank-form .inputes *{
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: auto 5px;
+}
+
+.rank-form .inputes * input{
+  height: 40px;
+  width: 100%;
+  border: 3px solid rgb(112, 112, 112);
+}
+
+#colorL{
+  margin-right: 8px;
 }
 
 .rank-form .input-color {
   padding: 0px;
+}
+
+.rank-form button{
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto 5px;
 }
