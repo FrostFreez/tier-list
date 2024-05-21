@@ -1,24 +1,12 @@
 .rank-page {
   background-color: rgb(82, 82, 82);
-  padding: 15px;
+  padding-inline: 15px;
   min-height: 100vh;
 }
-.headerR{
-  background-color: var(--bc);
-  height: 10vh;
-  width: 100vw;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: brown;
-  margin: -15px;
-  margin-bottom: 15px;
-}
-h1, .headerR > a{
-  font-size: 3rem;
-  margin: 0 1vw;
-  color: black;
-  font-weight: bold;
+.rank-page > .header{
+  margin-inline: -15px;
+  margin-bottom: 2vh;
+  position: relative;
 }
 .inputs{
   display: flex;

@@ -8,6 +8,7 @@
   flex-flow: nowrap;
   justify-content: space-around;
   color: white;
+  border: 2px groove white;
 }
 
 .image-form .inputes {

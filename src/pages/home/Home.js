@@ -23,8 +23,10 @@ function Home() {
     fetchData();
   }, []);
 
-  const topics = ["ANIME/MANGA", "MOVIE", "BRAND", "VIDEOGAME", "BOARDGAME", "MUSIC", "VEHICLE",
-    "CELEBRITY", "CHARACTER", "BOOK", "ANIMAL", "OBJECT", "INSTITUTION", "FOOD", "SPORTS", "COUNTRY",
+  const topics = ["ANIME/MANGA", "MOVIE", "BRAND", "VIDEOGAME",
+   "BOARDGAME", "MUSIC", "VEHICLE", "CELEBRITY", 
+   "CHARACTER", "BOOK", "ANIMAL", "OBJECT",
+   "INSTITUTION", "FOOD", "SPORTS", "COUNTRY",
     "PROGRAMS", "IDEAL", "SCHOOL", "UNIVERSE"];
 
   function bring() {

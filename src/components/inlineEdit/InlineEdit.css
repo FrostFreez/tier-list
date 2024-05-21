@@ -1,3 +1,10 @@
 input.inline-edit {
   width: 100%;
 }
+.input{
+  width: 100%;
+}
+.form{
+  border: 2px groove white;
+  gap: 2vw;
+}

@@ -14,8 +14,8 @@ export default function TierListForm({name, setName, onSave}) {
   return (
     <div>
       <form action="" className="form" onSubmit={handleAddList}>
-        <div className="inputs">
-          <div className="">          
+        <div className="input">
+          <div className="inline-edit">          
             <InlineEdit 
               placeholder="Tier list Name"
               value={name} 

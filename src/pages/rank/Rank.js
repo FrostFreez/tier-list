@@ -85,7 +85,7 @@ export default function Rank() {
 
   return (
     <div className="rank-page">
-      <div className="headerR">
+      <div className="header">
         <a href={"/"}>TIERLISTER</a>
       </div>
       {

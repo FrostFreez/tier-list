@@ -1,7 +1,6 @@
 .ranks {
   background-color: rgb(82, 82, 82);
   color: white;
-  margin: 0px;
   padding: 10px;
 }
 
@@ -23,8 +22,7 @@
   margin: 1px 1px;
   background-color: rgb(101, 101, 101);
   display: flex;
-  min-height: 100px;
-  min-width: 100px;
+  height: 100px;
   width: 100px;
   align-items: center;
   justify-content: center;
@@ -35,7 +33,7 @@
   background-color: rgb(101, 101, 101);
   width: 100%;
   min-height: 100px;
-  height: auto;
+  height: 100px;
   display: flex;
   flex-wrap: wrap;
 }
@@ -48,9 +46,13 @@
   width: auto;
 }
 
+.rank-item{
+  aspect-ratio: 3/2;
+}
+
 .rank-item img {
-  height: 100%;  
   height: 100%;
+  width: 100%;
   margin: 1px;
 }
 
